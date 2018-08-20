@@ -90,9 +90,9 @@ $ find kernel | cpio -H newc --create > acpi_override
 $ cp acpi_override /boot
 ```
 
-9. We yet have to tell GRUB to load our new DSDT table on boot in its configuration file, usually located in /boot/grub/grub.cfg or something similar. Look out for the GRUB menu entry you're usually booting, and simply add our new image to the initrd line. It should look somewhat like that (if your initrd line contains other elements, leave them as they are and simply add the new ACPI override):
+9. We yet have to tell GRUB to load our new DSDT table on boot in its configuration file, usually located in /boot/grub/grub.cfg or something similar. Look out for the GRUB menu entry you're usually booting, and simply add our new image `/acpi_override` to the initrd line. It should look somewhat like that (if your initrd line contains other elements, leave them as they are and simply add the new ACPI override):
 ```
-initrd   /acpi_override /initramfs-linux.img
+initrd   /acpi_override /initrd.img-4.17.4-041704-generic
 ```
 Note: You will need to do this again when your distribution updates the kernel and re-writes the GRUB configuration. I'm looking for a more automated approach, but was too lazy to do it so far.
 
